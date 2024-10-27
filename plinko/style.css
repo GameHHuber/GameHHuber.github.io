@@ -1,0 +1,154 @@
+/* Overall Page Styling */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: #1c1c1e;
+  color: #f5f5f7;
+}
+
+#container {
+  text-align: center;
+  max-width: 350px;
+  padding: 20px;
+  background: #2c2c2e;
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  color: #f5f5f7;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+#balance-container {
+  margin: 12px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#balance {
+  color: #0a84ff;
+}
+
+#add-money {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #f5f5f7;
+  background: #34c759;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#add-money:hover {
+  background-color: #30b456;
+}
+
+/* Bet and Play Button Styling */
+#betAmount {
+  padding: 10px;
+  font-size: 1em;
+  width: 140px;
+  border: none;
+  border-radius: 12px;
+  background: #2c2c2e;
+  color: #f5f5f7;
+}
+
+/* Remove arrows on number input (for all browsers) */
+#betAmount {
+  -moz-appearance: textfield;
+}
+#betAmount::-webkit-outer-spin-button,
+#betAmount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #f5f5f7;
+  background: #0a84ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #007aff;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #2c2c2e;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #f5f5f7;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Slot Styling within Plinko Board */
+#plinko-board {
+  position: relative;
+  width: 320px;
+  height: 450px;
+  margin: 20px auto;
+  border-radius: 12px;
+  border: 2px solid #2c2c2e;
+  background: #1c1c1e;
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.6), inset -4px -4px 10px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.slot-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.slot {
+  flex: 1;
+  text-align: center;
+  height: 30px;
+  color: #f5f5f7;
+  font-size: 1em;
+  line-height: 30px;
+  background-color: #3a3a3c;
+  border-radius: 6px;
+  margin: 1px;
+}
+
+.slot[data-multiplier="0"] { background-color: #ff453a; }
+.slot[data-multiplier="2"] { background-color: #5e5ce6; }
+.slot[data-multiplier="5"] { background-color: #32d74b; }
+.slot[data-multiplier="10"] { background-color: #ff9f0a; }
+.slot[data-multiplier="15"] { background-color: #bf5af2; }
