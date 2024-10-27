@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big man Pliko</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+</head>
+<body>
+  <div id="container">
+    <h1>Big man Pliko</h1>
+    <p>Balance: $<span id="balance">1000</span></p>
+    <div>
+      <input type="number" id="betAmount" placeholder="Enter your bet" min="1" max="1000">
+      <button onclick="playGame()">Play!</button>
+    </div>
+    <div id="plinko-board"></div>
+    <p>Result: <span id="result"></span></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
