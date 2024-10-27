@@ -1,0 +1,97 @@
+/* Body and Container Styles */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: #eee;
+}
+
+#container {
+  text-align: center;
+}
+
+h1 {
+  color: #ffeb3b;
+}
+
+#balance {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #2ecc71;
+}
+
+input#betAmount {
+  padding: 5px;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+button {
+  padding: 5px 15px;
+  font-size: 1em;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Plinko Board Styles */
+#plinko-board {
+  position: relative;
+  margin: 20px auto;
+  width: 300px;
+  height: 400px;
+  border: 2px solid #fff;
+  background-color: #222;
+  overflow: hidden;
+}
+
+/* Peg Styles */
+.peg {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ffeb3b;
+  border-radius: 50%;
+}
+
+/* Ball Styles */
+.ball {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: top 0.2s, left 0.2s;
+}
+
+/* Slot Styles */
+.slot {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  bottom: 0;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 5px;
+}
+
+/* Slot Colors for Different Multipliers */
+.slot[data-multiplier="0"] { background-color: #e74c3c; } /* No winnings */
+.slot[data-multiplier="2"] { background-color: #3498db; } /* 2x multiplier */
+.slot[data-multiplier="5"] { background-color: #2ecc71; } /* 5x multiplier */
+.slot[data-multiplier="10"] { background-color: #f39c12; } /* 10x multiplier */
+.slot[data-multiplier="15"] { background-color: #9b59b6; } /* 15x multiplier */
