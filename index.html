@@ -1,23 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big man Pliko</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <style>
+        /* Global reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Dark theme background */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1c1c1e;
+            color: #f5f5f7;
+            overflow: hidden;
+        }
+
+        /* Centered container */
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Smooth title and subtitle styles */
+        h1 {
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            opacity: 0.9;
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        p {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        /* Button design */
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            max-width: 300px;
+            background-color: #0a84ff;
+            color: #f5f5f7;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* Hover and active states */
+        .button:hover {
+            background-color: #0a6fd8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(10, 132, 255, 0.5);
+        }
+
+        .button:active {
+            background-color: #085bb5;
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(10, 132, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-  <div id="container">
-    <h1>Big man Pliko</h1>
-    <p>Balance: $<span id="balance">1000</span></p>
-    <div>
-      <input type="number" id="betAmount" placeholder="Enter your bet" min="1" max="1000">
-      <button onclick="playGame()">Play!</button>
+
+    <div class="container">
+        <h1>Game Hub</h1>
+        <p>Select a game to play</p>
+        <a href="http://dexter-morgan.rf.gd/coordinates" class="button">Random Coordinate Gen</a>
+        <a href="#other-game-1" class="button">Coming soon</a>
+        <a href="#other-game-2" class="button">Coming soon</a>
+        <a href="#other-game-3" class="button">Coming soon</a>
     </div>
-    <div id="plinko-board"></div>
-    <p>Result: <span id="result"></span></p>
-  </div>
-  <script src="script.js"></script>
+
 </body>
 </html>
