@@ -21,18 +21,7 @@ body {
 .balance {
   font-size: 1.2em;
   color: #666;
-  margin-bottom: 20px;
-}
-
-.slots {
-  display: flex;
-  justify-content: space-around;
-  font-size: 2em;
-  margin: 20px 0;
-}
-
-.slot {
-  padding: 10px;
+  margin-bottom: 15px;
 }
 
 /* Styling for input field */
@@ -47,7 +36,7 @@ input[type="number"] {
 
 /* Button styling */
 .button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 1em;
   cursor: pointer;
   border: none;
@@ -78,31 +67,15 @@ input[type="number"] {
 }
 
 .message {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 1.1em;
   color: #333;
 }
 
-/* Round history styling */
-.history-container {
-  margin-top: 20px;
-  font-size: 0.9em;
-  color: #555;
-  max-height: 200px;
-  overflow-y: auto;
-  border-top: 1px solid #eee;
-  padding-top: 10px;
-}
-
-.history-entry {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 0;
-}
-
+/* Link styling */
 .link {
   display: block;
-  margin-top: 20px;
+  margin-top: 15px;
   color: #007aff;
   text-decoration: none;
   font-weight: bold;
