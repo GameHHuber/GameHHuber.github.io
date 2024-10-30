@@ -9,38 +9,39 @@
 <body>
   <div class="game-container">
     <h1>Add Fake Money</h1>
-    <div class="balance">Current Balance: <span id="balance">0</span> FC</div>
+    <div class="balance">Current Balance: <span id="balance">0</span> BTC</div>
     <input type="number" id="addAmount" placeholder="Amount to add" min="0" />
-    <button id="addMoney">Add Money</button>
+    <button id="addMoney" class="button primary">Add Money</button>
+    <button id="removeAll" class="button danger">Remove All Money</button>
     <div class="message" id="message"></div>
-    <a href="index.html" class="back-link">Back to Slot Game</a>
+    <a href="index.html" class="link">Back to Slot Game</a>
   </div>
   <script>
-    // Load balance from localStorage or start with a default
-    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
+    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 0;
 
-    // Display current balance
     function updateBalanceDisplay() {
       document.getElementById("balance").innerText = balance;
     }
     updateBalanceDisplay();
 
-    // Add money to balance
     document.getElementById("addMoney").addEventListener("click", () => {
       const addAmount = parseInt(document.getElementById("addAmount").value);
-
       if (isNaN(addAmount) || addAmount <= 0) {
         document.getElementById("message").innerText = "Please enter a valid amount.";
         return;
       }
 
-      // Update balance and save to localStorage
       balance += addAmount;
       localStorage.setItem("balance", balance);
-      
-      // Update display and confirmation message
       updateBalanceDisplay();
-      document.getElementById("message").innerText = `Added ${addAmount} FC to your balance!`;
+      document.getElementById("message").innerText = `Added ${addAmount} BTC to your balance!`;
+    });
+
+    document.getElementById("removeAll").addEventListener("click", () => {
+      balance = 0;
+      updateBalanceDisplay();
+      localStorage.setItem("balance", balance);
+      document.getElementById("message").innerText = "All money removed!";
     });
   </script>
 </body>
