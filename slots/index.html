@@ -10,72 +10,63 @@
   <div class="game-container">
     <h1>Fake Crypto Slots</h1>
     <div class="balance">Balance: <span id="balance">0</span> BTC</div>
-    
-    <!-- Set Initial Balance Section -->
-    <input type="number" id="initialBalance" placeholder="Set Initial Balance" min="0" />
-    <button id="setBalance" class="button primary">Set Balance</button>
-    
-    <div class="slots">
-      <div class="slot" id="slot1">🍒</div>
-      <div class="slot" id="slot2">🍒</div>
-      <div class="slot" id="slot3">🍒</div>
-    </div>
-    <button id="spin" class="button primary">Spin (Bet 50 BTC)</button>
+    <input type="number" id="betAmount" placeholder="Enter bet amount" min="1" />
+    <button id="spin" class="button primary">Spin</button>
     <button id="removeAll" class="button danger">Remove All Money</button>
     <div class="message" id="message"></div>
     <a href="add-money.html" class="link">Add Money</a>
   </div>
   <script>
-    // Load balance from localStorage or start with a default
-    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 0;
+    // Load balance from localStorage or initialize to 1000 if not set
+    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
 
+    // Display initial balance
     function updateBalanceDisplay() {
       document.getElementById("balance").innerText = balance;
     }
     updateBalanceDisplay();
 
-    // Set Initial Balance functionality
-    document.getElementById("setBalance").addEventListener("click", () => {
-      const initialBalance = parseInt(document.getElementById("initialBalance").value);
-      if (isNaN(initialBalance) || initialBalance <= 0) {
-        document.getElementById("message").innerText = "Please enter a valid balance.";
-        return;
-      }
-      balance = initialBalance;
-      localStorage.setItem("balance", balance);
-      updateBalanceDisplay();
-      document.getElementById("message").innerText = `Balance set to ${balance} BTC.`;
-    });
-
     // Spin functionality
     document.getElementById("spin").addEventListener("click", () => {
-      if (balance < 50) {
-        document.getElementById("message").innerText = "Not enough balance to spin!";
+      const betAmount = parseInt(document.getElementById("betAmount").value);
+
+      // Validate bet amount
+      if (isNaN(betAmount) || betAmount <= 0) {
+        document.getElementById("message").innerText = "Please enter a valid bet amount.";
+        return;
+      }
+      if (betAmount > balance) {
+        document.getElementById("message").innerText = "Not enough balance to place this bet!";
         return;
       }
 
-      balance -= 50;
+      // Deduct the bet amount
+      balance -= betAmount;
       updateBalanceDisplay();
       localStorage.setItem("balance", balance);
 
+      // Generate slot results
       const icons = ["🍒", "🍋", "🍉", "🍇", "⭐"];
       const slot1 = icons[Math.floor(Math.random() * icons.length)];
       const slot2 = icons[Math.floor(Math.random() * icons.length)];
       const slot3 = icons[Math.floor(Math.random() * icons.length)];
 
+      // Update slot display
       document.getElementById("slot1").innerText = slot1;
       document.getElementById("slot2").innerText = slot2;
       document.getElementById("slot3").innerText = slot3;
 
+      // Determine win or lose
       let message = "Sorry, you lose!";
       if (slot1 === slot2 && slot2 === slot3) {
-        balance += 500;
-        message = "Jackpot! You win 500 BTC!";
+        balance += betAmount * 10; // Jackpot: 10x the bet
+        message = `Jackpot! You win ${betAmount * 10} BTC!`;
       } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
-        balance += 100;
-        message = "Nice! You win 100 BTC!";
+        balance += betAmount * 2; // Small win: 2x the bet
+        message = `Nice! You win ${betAmount * 2} BTC!`;
       }
 
+      // Update balance and message
       updateBalanceDisplay();
       localStorage.setItem("balance", balance);
       document.getElementById("message").innerText = message;
