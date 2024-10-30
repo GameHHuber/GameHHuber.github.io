@@ -35,15 +35,34 @@ body {
   padding: 10px;
 }
 
-button {
+/* Button styling */
+.button {
   padding: 10px 20px;
   font-size: 1em;
   cursor: pointer;
-  background-color: #007aff;
-  color: white;
   border: none;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.button.primary {
+  background: linear-gradient(145deg, #007aff, #005bb5);
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 122, 255, 0.4);
+}
+
+.button.primary:hover {
+  background: linear-gradient(145deg, #005bb5, #007aff);
+}
+
+.button.danger {
+  background: linear-gradient(145deg, #ff3b30, #d32f2f);
+  color: white;
+  box-shadow: 0px 4px 10px rgba(255, 59, 48, 0.4);
+}
+
+.button.danger:hover {
+  background: linear-gradient(145deg, #d32f2f, #ff3b30);
 }
 
 .message {
@@ -52,8 +71,7 @@ button {
   color: #333;
 }
 
-.back-link,
-.add-money-link {
+.link {
   display: block;
   margin-top: 20px;
   color: #007aff;
