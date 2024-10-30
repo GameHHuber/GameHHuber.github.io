@@ -17,7 +17,7 @@
     <a href="index.html" class="link">Back to Slot Game</a>
   </div>
   <script>
-    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 0;
+    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
 
     function updateBalanceDisplay() {
       document.getElementById("balance").innerText = balance;
@@ -26,6 +26,7 @@
 
     document.getElementById("addMoney").addEventListener("click", () => {
       const addAmount = parseInt(document.getElementById("addAmount").value);
+
       if (isNaN(addAmount) || addAmount <= 0) {
         document.getElementById("message").innerText = "Please enter a valid amount.";
         return;
