@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Fake Money</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Add Fake Money</h1>
+    <div class="balance">
+      Current Balance: <span id="balance">0</span> FC
+    </div>
+    <input type="number" id="addAmount" placeholder="Amount to add" min="0" />
+    <button id="addMoney">Add Money</button>
+    <div class="message" id="message"></div>
+    <a href="index.html" class="back-link">Back to Slot Game</a>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    // Load the current balance from localStorage
+    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
+
+    // Display current balance
+    document.getElementById("balance").innerText = balance;
+
+    // Event listener for the Add Money button
+    document.getElementById("addMoney").addEventListener("click", () => {
+      const addAmount = parseInt(document.getElementById("addAmount").value);
+      
+      if (isNaN(addAmount) || addAmount <= 0) {
+        document.getElementById("message").innerText = "Please enter a valid amount.";
+        return;
+      }
+
+      // Update balance and save to localStorage
+      balance += addAmount;
+      localStorage.setItem("balance", balance);
+      
+      // Update display and show confirmation message
+      document.getElementById("balance").innerText = balance;
+      document.getElementById("message").innerText = `Added ${addAmount} FC to your balance!`;
+    });
+  </script>
+</body>
+</html>
