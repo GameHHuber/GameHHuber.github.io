@@ -9,26 +9,43 @@
 <body>
   <div class="game-container">
     <h1>Fake Crypto Slots</h1>
-    <div class="balance">Balance: <span id="balance">0</span> FC</div>
+    <div class="balance">Balance: <span id="balance">0</span> BTC</div>
+    
+    <!-- Set Initial Balance Section -->
+    <input type="number" id="initialBalance" placeholder="Set Initial Balance" min="0" />
+    <button id="setBalance" class="button primary">Set Balance</button>
+    
     <div class="slots">
       <div class="slot" id="slot1">🍒</div>
       <div class="slot" id="slot2">🍒</div>
       <div class="slot" id="slot3">🍒</div>
     </div>
-    <button id="spin">Spin (Bet 50 FC)</button>
+    <button id="spin" class="button primary">Spin (Bet 50 BTC)</button>
+    <button id="removeAll" class="button danger">Remove All Money</button>
     <div class="message" id="message"></div>
-    <a href="add-money.html" class="add-money-link">Add Money</a>
+    <a href="add-money.html" class="link">Add Money</a>
   </div>
-  <script src="script.js"></script>
   <script>
-    // Load the balance from localStorage or start with a default
-    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
+    // Load balance from localStorage or start with a default
+    let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 0;
 
-    // Display the initial balance
     function updateBalanceDisplay() {
       document.getElementById("balance").innerText = balance;
     }
     updateBalanceDisplay();
+
+    // Set Initial Balance functionality
+    document.getElementById("setBalance").addEventListener("click", () => {
+      const initialBalance = parseInt(document.getElementById("initialBalance").value);
+      if (isNaN(initialBalance) || initialBalance <= 0) {
+        document.getElementById("message").innerText = "Please enter a valid balance.";
+        return;
+      }
+      balance = initialBalance;
+      localStorage.setItem("balance", balance);
+      updateBalanceDisplay();
+      document.getElementById("message").innerText = `Balance set to ${balance} BTC.`;
+    });
 
     // Spin functionality
     document.getElementById("spin").addEventListener("click", () => {
@@ -37,36 +54,39 @@
         return;
       }
 
-      // Deduct the bet
       balance -= 50;
       updateBalanceDisplay();
-      localStorage.setItem("balance", balance); // Save to localStorage
+      localStorage.setItem("balance", balance);
 
-      // Simulate the slot spin
       const icons = ["🍒", "🍋", "🍉", "🍇", "⭐"];
       const slot1 = icons[Math.floor(Math.random() * icons.length)];
       const slot2 = icons[Math.floor(Math.random() * icons.length)];
       const slot3 = icons[Math.floor(Math.random() * icons.length)];
 
-      // Update slot display
       document.getElementById("slot1").innerText = slot1;
       document.getElementById("slot2").innerText = slot2;
       document.getElementById("slot3").innerText = slot3;
 
-      // Determine win or lose
       let message = "Sorry, you lose!";
       if (slot1 === slot2 && slot2 === slot3) {
         balance += 500;
-        message = "Jackpot! You win 500 FC!";
+        message = "Jackpot! You win 500 BTC!";
       } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
         balance += 100;
-        message = "Nice! You win 100 FC!";
+        message = "Nice! You win 100 BTC!";
       }
 
-      // Update balance and message
       updateBalanceDisplay();
-      localStorage.setItem("balance", balance); // Save to localStorage
+      localStorage.setItem("balance", balance);
       document.getElementById("message").innerText = message;
+    });
+
+    // Remove All Money functionality
+    document.getElementById("removeAll").addEventListener("click", () => {
+      balance = 0;
+      updateBalanceDisplay();
+      localStorage.setItem("balance", balance);
+      document.getElementById("message").innerText = "All money removed!";
     });
   </script>
 </body>
