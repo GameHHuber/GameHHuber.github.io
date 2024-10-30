@@ -10,45 +10,32 @@
   <div class="game-container">
     <h1>Crypto Slots</h1>
     <div class="balance">Balance: <span id="balance">0</span> BTC</div>
+    
+    <!-- Bet Amount Input -->
     <input type="number" id="betAmount" placeholder="Enter bet amount" min="1" />
+    
+    <!-- Spin Button -->
     <button id="spin" class="button primary">Spin</button>
+    
+    <!-- Remove All Money Button -->
     <button id="removeAll" class="button danger">Remove All Money</button>
+    
+    <!-- Message Section -->
     <div class="message" id="message"></div>
     
-    <!-- Round History Section -->
-    <h2>Round History</h2>
-    <div id="roundHistory" class="history-container"></div>
-
+    <!-- Add Money Link -->
     <a href="add-money.html" class="link">Add Money</a>
   </div>
   
   <script>
     // Load the balance from localStorage or initialize to 1000 if not set
     let balance = localStorage.getItem("balance") ? parseInt(localStorage.getItem("balance")) : 1000;
-    const roundHistory = []; // Array to store round history
 
     // Display initial balance
     function updateBalanceDisplay() {
       document.getElementById("balance").innerText = balance;
     }
     updateBalanceDisplay();
-
-    // Function to update round history display
-    function updateRoundHistory() {
-      const historyContainer = document.getElementById("roundHistory");
-      historyContainer.innerHTML = ""; // Clear existing history
-
-      roundHistory.slice(-5).forEach((round, index) => { // Show last 5 rounds
-        const roundDiv = document.createElement("div");
-        roundDiv.classList.add("history-entry");
-        roundDiv.innerHTML = `
-          <div>Round ${index + 1} - Bet: ${round.bet} BTC</div>
-          <div>Outcome: ${round.outcome}</div>
-          <div>Result: ${round.result > 0 ? `+${round.result}` : round.result} BTC</div>
-        `;
-        historyContainer.prepend(roundDiv); // Add to the top
-      });
-    }
 
     // Spin functionality
     document.getElementById("spin").addEventListener("click", () => {
@@ -76,14 +63,14 @@
       const slot3 = icons[Math.floor(Math.random() * icons.length)];
 
       // Determine win or lose
-      let message = "Sorry, you lose!";
-      let result = -betAmount; // Default loss
+      let message = "You lost this round. Better luck next time!";
+      let result = -betAmount; // Default to loss
       if (slot1 === slot2 && slot2 === slot3) {
         result = betAmount * 5; // Jackpot: 5x the bet
-        message = `Jackpot! You win ${result} BTC!`;
+        message = `Jackpot! You won ${result} BTC!`;
       } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
         result = betAmount * 1.5; // Small win: 1.5x the bet
-        message = `Nice! You win ${result} BTC!`;
+        message = `Nice! You won ${result} BTC!`;
       }
 
       // Update balance and message
@@ -91,14 +78,6 @@
       updateBalanceDisplay();
       localStorage.setItem("balance", balance);
       document.getElementById("message").innerText = message;
-
-      // Log the round to history
-      roundHistory.push({
-        bet: betAmount,
-        outcome: `${slot1} ${slot2} ${slot3}`,
-        result: result.toFixed(2) // Limit to two decimal places
-      });
-      updateRoundHistory(); // Update history display
     });
 
     // Remove All Money functionality
