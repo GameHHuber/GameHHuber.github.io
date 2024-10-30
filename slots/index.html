@@ -20,6 +20,13 @@
     <!-- Remove All Money Button -->
     <button id="removeAll" class="button danger">Remove All Money</button>
     
+    <!-- Slot Display -->
+    <div class="slots">
+      <div class="slot" id="slot1">🍒</div>
+      <div class="slot" id="slot2">🍒</div>
+      <div class="slot" id="slot3">🍒</div>
+    </div>
+    
     <!-- Message Section -->
     <div class="message" id="message"></div>
     
@@ -56,28 +63,41 @@
       updateBalanceDisplay();
       localStorage.setItem("balance", balance);
 
-      // Generate slot results
-      const icons = ["🍒", "🍋", "🍉", "🍇", "⭐"];
-      const slot1 = icons[Math.floor(Math.random() * icons.length)];
-      const slot2 = icons[Math.floor(Math.random() * icons.length)];
-      const slot3 = icons[Math.floor(Math.random() * icons.length)];
+      // Add spinning animation to slots
+      const slotElements = [document.getElementById("slot1"), document.getElementById("slot2"), document.getElementById("slot3")];
+      slotElements.forEach(slot => slot.classList.add("spinning"));
 
-      // Determine win or lose
-      let message = "You lost this round. Better luck next time!";
-      let result = -betAmount; // Default to loss
-      if (slot1 === slot2 && slot2 === slot3) {
-        result = betAmount * 5; // Jackpot: 5x the bet
-        message = `Jackpot! You won ${result} BTC!`;
-      } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
-        result = betAmount * 1.5; // Small win: 1.5x the bet
-        message = `Nice! You won ${result} BTC!`;
-      }
+      // Simulate slot results after delay
+      setTimeout(() => {
+        const icons = ["🍒", "🍋", "🍉", "🍇", "⭐"];
+        const slot1 = icons[Math.floor(Math.random() * icons.length)];
+        const slot2 = icons[Math.floor(Math.random() * icons.length)];
+        const slot3 = icons[Math.floor(Math.random() * icons.length)];
 
-      // Update balance and message
-      balance += result;
-      updateBalanceDisplay();
-      localStorage.setItem("balance", balance);
-      document.getElementById("message").innerText = message;
+        // Remove spinning animation and update icons
+        slotElements[0].innerText = slot1;
+        slotElements[1].innerText = slot2;
+        slotElements[2].innerText = slot3;
+        slotElements.forEach(slot => slot.classList.remove("spinning"));
+
+        // Determine win or lose
+        let message = "You lost this round. Better luck next time!";
+        let result = -betAmount; // Default to loss
+        if (slot1 === slot2 && slot2 === slot3) {
+          result = betAmount * 5; // Jackpot: 5x the bet
+          message = `Jackpot! You won ${result} BTC!`;
+        } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
+          result = betAmount * 1.5; // Small win: 1.5x the bet
+          message = `Nice! You won ${result} BTC!`;
+        }
+
+        // Update balance and display message with animation
+        balance += result;
+        updateBalanceDisplay();
+        localStorage.setItem("balance", balance);
+        document.getElementById("message").innerText = message;
+        document.getElementById("message").classList.add("fade-in");
+      }, 1000); // Delay matches spinning animation duration
     });
 
     // Remove All Money functionality
