@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f8f8f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+}
+
+.game-container {
+  text-align: center;
+  background: linear-gradient(145deg, #e4e4e4, #ffffff);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  width: 350px;
+  transition: all 0.3s ease;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.balance {
+  font-size: 1.2em;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.balance-amount {
+  font-weight: bold;
+  color: #333;
+}
+
+.slots {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+.slot {
+  padding: 15px;
+  background: linear-gradient(145deg, #f1f1f1, #e2e2e2);
+  border-radius: 10px;
+  box-shadow: 6px 6px 12px #c7c7c7, -6px -6px 12px #ffffff;
+  transition: transform 0.4s ease;
+}
+
+.slot.spinning {
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0%, 100% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(360deg);
+  }
+}
+
+.spin-button {
+  padding: 12px 24px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(145deg, #007aff, #0063cc);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 122, 255, 0.2), -4px -4px 10px rgba(0, 122, 255, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spin-button:hover {
+  background: #005bb5;
+  box-shadow: 2px 2px 6px rgba(0, 90, 200, 0.3), -2px -2px 6px rgba(0, 90, 200, 0.3);
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #444;
+}
+
+.message.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Background animation */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, #007aff, #34c759, #ff3b30, #ff9500, #ffcc00);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main content container */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  overflow: hidden; /* Prevents scrollbars if gradient overflows */
+}
+
+/* Game container styling update */
+.game-container {
+  position: relative;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.15), -20px -20px 60px rgba(255, 255, 255, 0.2);
+  width: 350px;
+  transition: all 0.3s ease;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
