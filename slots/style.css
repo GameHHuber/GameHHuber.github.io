@@ -1,30 +1,41 @@
+/* Animated background */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f8f8f8;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #333;
+  background: linear-gradient(-45deg, #007aff, #34c759, #ff3b30, #ffcc00);
+  background-size: 400% 400%;
+  animation: backgroundShift 15s ease infinite;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .game-container {
   text-align: center;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 350px;
+  backdrop-filter: blur(8px);
 }
 
+/* Balance styling */
 .balance {
   font-size: 1.2em;
   color: #666;
   margin-bottom: 15px;
 }
 
-/* Styling for input field */
+/* Input styling */
 input[type="number"] {
   width: 100%;
   padding: 10px;
@@ -34,7 +45,7 @@ input[type="number"] {
   text-align: center;
 }
 
-/* Button styling */
+/* Button styling with hover animation */
 .button {
   padding: 12px 20px;
   font-size: 1em;
@@ -50,9 +61,11 @@ input[type="number"] {
   background: linear-gradient(145deg, #007aff, #005bb5);
   color: white;
   box-shadow: 0px 4px 10px rgba(0, 122, 255, 0.4);
+  transition: transform 0.3s ease;
 }
 
 .button.primary:hover {
+  transform: scale(1.05);
   background: linear-gradient(145deg, #005bb5, #007aff);
 }
 
@@ -60,16 +73,36 @@ input[type="number"] {
   background: linear-gradient(145deg, #ff3b30, #d32f2f);
   color: white;
   box-shadow: 0px 4px 10px rgba(255, 59, 48, 0.4);
+  transition: transform 0.3s ease;
 }
 
 .button.danger:hover {
+  transform: scale(1.05);
   background: linear-gradient(145deg, #d32f2f, #ff3b30);
 }
 
+/* Slot icon flip animation */
+.slot {
+  padding: 10px;
+  font-size: 2em;
+  transition: transform 0.6s ease;
+}
+
+.spinning {
+  transform: rotateX(360deg);
+}
+
+/* Message fade-in animation */
 .message {
   margin-top: 20px;
   font-size: 1.1em;
   color: #333;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.message.fade-in {
+  opacity: 1;
 }
 
 /* Link styling */
